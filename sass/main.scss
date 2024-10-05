@@ -2,7 +2,7 @@
 @use "./utilities/mixins" as mixins;
 
 :root {
-	--blue: #0096ff;
+	--primary: #0096ff;
 	--purple: #cf9fff;
 	--pink: #ffb6c1;
 }
@@ -28,6 +28,8 @@ body {
 	-webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
 	-moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
 	box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+	overflow: hidden;
+	z-index: 10;
 
 	&__options {
 		position: absolute;
@@ -43,7 +45,7 @@ body {
 			transition: color 0.2s;
 
 			&:hover {
-				color: var(--blue);
+				color: var(--primary);
 			}
 		}
 
@@ -61,7 +63,7 @@ body {
 	&__clock {
 		font-size: 4.8rem;
 		font-weight: 300;
-		color: var(--blue);
+		color: var(--primary);
 	}
 
 	&__time {
@@ -85,7 +87,7 @@ body {
 			transition: background-color 0.2s;
 
 			&:hover {
-				background-color: var(--blue);
+				background-color: var(--primary);
 			}
 		}
 
@@ -112,4 +114,85 @@ body {
 			font-weight: bold;
 		}
 	}
+
+	&__change-color {
+		display: grid;
+		row-gap: 0.8em;
+		position: absolute;
+		top: 20%;
+		right: 3%;
+		transform: translateX(4em);
+		transition: transform 0.3s;
+
+		&-item {
+			width: 2em;
+			height: 2em;
+			border-radius: 50%;
+			background-color: tomato;
+			border: 1px solid black;
+			cursor: pointer;
+
+			&--primary {
+				background-color: var(--primary);
+			}
+
+			&--purple {
+				background-color: var(--purple);
+			}
+
+			&--pink {
+				background-color: var(--pink);
+			}
+		}
+	}
+}
+
+.instructions {
+	padding: 3.3em;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgb(40, 40, 43);
+	background: linear-gradient(0deg, rgba(40, 40, 43, 1) 31%, rgba(27, 30, 34, 1) 100%);
+	border-radius: 1em;
+	z-index: 3;
+	opacity: 0;
+	transition: opacity 0.2s;
+
+	&-title {
+		margin-bottom: 1em;
+	}
+
+	&-list {
+		display: grid;
+		row-gap: 0.5em;
+		list-style: none;
+
+		span {
+			color: var(--primary);
+		}
+	}
+}
+
+.shadow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.active {
+	transform: translateX(0);
+}
+
+.opacity {
+	opacity: 1;
+}
+
+.display {
+	display: block;
 }
